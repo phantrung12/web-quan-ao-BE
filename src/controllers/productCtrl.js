@@ -165,6 +165,18 @@ exports.getProductFilter = async (req, res) => {
   });
 };
 
+exports.getTopSoldProduct = async (req, res) => {
+  try {
+    const products = await Product.find()
+      .populate({ path: "category", select: "_id name" })
+      .sort({ sold: -1 })
+      .limit(5);
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
 exports.addReview = async (req, res) => {
   try {
     const { productId, review } = req.body;

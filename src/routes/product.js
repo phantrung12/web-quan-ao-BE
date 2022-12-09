@@ -10,6 +10,7 @@ const {
   addReview,
   getAllReview,
   updateSale,
+  getTopSoldProduct,
 } = require("../controllers/productCtrl");
 const {
   requireSignin,
@@ -78,6 +79,19 @@ router.put(
   requireSignin,
   adminMiddleware,
   updateSale
+);
+
+router.get(
+  "/admin/product/search",
+  requireSignin,
+  adminMiddleware,
+  getProductFilter
+);
+router.get(
+  "/admin/product/topSold",
+  requireSignin,
+  adminMiddleware,
+  getTopSoldProduct
 );
 
 // router.get("/product/getCate", getCategories);

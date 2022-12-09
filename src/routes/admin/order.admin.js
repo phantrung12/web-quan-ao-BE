@@ -3,6 +3,9 @@ const {
   updateOrder,
   getCustomerOrders,
   income,
+  countOrder,
+  countIncome,
+  countPayment,
 } = require("../../controllers/admin/orderCtrl.admin");
 const {
   requireSignin,
@@ -19,5 +22,8 @@ router.post(
   getCustomerOrders
 );
 router.get("/order/income", requireSignin, adminMiddleware, income);
+router.get("/order/countOrder", requireSignin, adminMiddleware, countOrder);
+router.get("/order/countPayment", requireSignin, adminMiddleware, countPayment);
+router.post("/order/countIncome", requireSignin, adminMiddleware, countIncome);
 
 module.exports = router;

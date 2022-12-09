@@ -12,7 +12,7 @@ exports.requireSignin = (req, res, next) => {
     const user = jwt.verify(token, process.env.JWT_SECRET);
     req.user = user;
   } else {
-    res.status(400).json("Authorization required");
+    res.status(401).json("Authorization required");
   }
   next();
 };
@@ -26,7 +26,7 @@ exports.userMiddleware = (req, res, next) => {
 
 exports.adminMiddleware = (req, res, next) => {
   if (req.user.role !== "admin") {
-    return res.status(400).json("You are not admin. access denied");
+    return res.status(401).json("You are not admin. access denied");
   }
   next();
 };
