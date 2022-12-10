@@ -94,6 +94,13 @@ router.get(
   getTopSoldProduct
 );
 
+router.get(
+  "/admin/product/:productId",
+  requireSignin,
+  adminMiddleware,
+  getProductsById
+);
+
 // router.get("/product/getCate", getCategories);
 
 module.exports = router;

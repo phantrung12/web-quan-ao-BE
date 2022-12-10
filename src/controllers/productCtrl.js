@@ -155,12 +155,14 @@ exports.getProductFilter = async (req, res) => {
   apiFeature.pagination(resultPerPage);
 
   productList = await apiFeature.query.clone();
+  let totalPage = productsCount / resultPerPage;
 
   res.status(200).json({
     success: true,
     productList,
     productsCount,
     resultPerPage,
+    totalPage,
     filteredProductsCount,
   });
 };
